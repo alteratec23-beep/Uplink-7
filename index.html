@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="UPLINK-7">
+<meta name="theme-color" content="#020812">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADuklEQVR42u3cMU7kMBSA4RkrNIiaeigo4BBwi6XlAJRbcAQKSg5AC7fgElBQ0G+93TZbrLRCTBIizSR+tr+/BI80fv79np2nyfpwc7EC+uhWq9Wf378mjj44Oja4ncHJ/gA5QA6QA+QAOUAOkAPkADlADoAcIAd2Z61ljyG07A1WVuDMAXKAHCAHyAFygBwgB8gBkAPkADkwJ1r2GETL3mBlBc4cIAfIAXKAHCjwKlsE57dvNcX99e6MHJz4Zl6RLek4wZKSzhztmBF81p0ARZt+nBSSmCGFRM8cpzcv4wM+Hq9qMuDk+mk8GhHyR4iW/bgZlWkxXZH3h8v8cuTtDo9k0Yq1mKjIlPwxX8s+c1kZMqMRLT5PtleR89u3jPUlhQ1WawScdU45etNGm2aMzD3j5SUxgx8llRUoK9JG9DjkkcPD0CIilmwXycOZAyXIsZ0h46SN++ensMlj+coic3w1I44fykosM6LlD3JErCb8WP1rvB0cHU//wHyDo50z7p+ffv6IdYcaiudMixLlV/aYQm88/co+z/Wk8eKSmFHK5ZYcscxo3I/EDH6QY9eVbtCPxAx+kGM/q9uUH4kZ/CAHyLHIdm8keSRm8KNdOeZbxer9SMzgxxA1t+yXWbklO/ta9uXt6cX80LIvMttXWV8SM/jR9FUW5Mi/fStLHokZ/KhfjjirUo0fiRn8qFmOmCtRgR+JGfyoU4740S/aj8QM37OJqyzIUd52LDR5FNmyLzHWe+ncatlXW8J390PLvubLYVnfvysruLvsvD0uTLSXujiQghwgB8gBcoAcIAdADpAD5AA5sBRejF8SWvYYRMsezhwgB8gBcoAcADlADpAD5AA5QA6QA+WhZV8SWvYYRMsezhwgB8plfbi5WP7McX779uUvH49XFuMzJ9df3ybyene28EFQ5kB4ObY3irTRqBxDGRKhIpZsF2nDmQPlyNGbJyWP3gjkqsI5Mwc/IpsRtKy06UfAWWd+Se3r3dn2A7H/kWrkydiIFnmvdevDzUX26JzevIz8t2JFxrPF+8Nl3q+X5/H5Nr35o2JFvi0i03PGfIsS5d3n7w+X4/mjqYNI9pwR7kDqsWm0OHQB4/JtiaFFu1fZNlNIwFl3wSNVfRaJvBO6UmJXmSVFZMeuxGjOd3kLMtiZA+QAOUAOkAMgB0YI0bJHTKL8yt7ggIOVFZAD5AA5QA6QA+QAOUAOkAPkAMgBcmAPaNljEC17g5UVOHOAHCAHyAFygBwgB8gBcgDkADlADszJX6oudCaJLGL8AAAAAElFTkSuQmCC">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADuklEQVR42u3cMU7kMBSA4RkrNIiaeigo4BBwi6XlAJRbcAQKSg5AC7fgElBQ0G+93TZbrLRCTBIizSR+tr+/BI80fv79np2nyfpwc7EC+uhWq9Wf378mjj44Oja4ncHJ/gA5QA6QA+QAOUAOkAPkADlADoAcIAd2Z61ljyG07A1WVuDMAXKAHCAHyAFygBwgB8gBkAPkADkwJ1r2GETL3mBlBc4cIAfIAXKAHCjwKlsE57dvNcX99e6MHJz4Zl6RLek4wZKSzhztmBF81p0ARZt+nBSSmCGFRM8cpzcv4wM+Hq9qMuDk+mk8GhHyR4iW/bgZlWkxXZH3h8v8cuTtDo9k0Yq1mKjIlPwxX8s+c1kZMqMRLT5PtleR89u3jPUlhQ1WawScdU45etNGm2aMzD3j5SUxgx8llRUoK9JG9DjkkcPD0CIilmwXycOZAyXIsZ0h46SN++ensMlj+coic3w1I44fykosM6LlD3JErCb8WP1rvB0cHU//wHyDo50z7p+ffv6IdYcaiudMixLlV/aYQm88/co+z/Wk8eKSmFHK5ZYcscxo3I/EDH6QY9eVbtCPxAx+kGM/q9uUH4kZ/CAHyLHIdm8keSRm8KNdOeZbxer9SMzgxxA1t+yXWbklO/ta9uXt6cX80LIvMttXWV8SM/jR9FUW5Mi/fStLHokZ/KhfjjirUo0fiRn8qFmOmCtRgR+JGfyoU4740S/aj8QM37OJqyzIUd52LDR5FNmyLzHWe+ncatlXW8J390PLvubLYVnfvysruLvsvD0uTLSXujiQghwgB8gBcoAcIAdADpAD5AA5sBRejF8SWvYYRMsezhwgB8gBcoAcADlADpAD5AA5QA6QA+WhZV8SWvYYRMsezhwgB8plfbi5WP7McX779uUvH49XFuMzJ9df3ybyene28EFQ5kB4ObY3irTRqBxDGRKhIpZsF2nDmQPlyNGbJyWP3gjkqsI5Mwc/IpsRtKy06UfAWWd+Se3r3dn2A7H/kWrkydiIFnmvdevDzUX26JzevIz8t2JFxrPF+8Nl3q+X5/H5Nr35o2JFvi0i03PGfIsS5d3n7w+X4/mjqYNI9pwR7kDqsWm0OHQB4/JtiaFFu1fZNlNIwFl3wSNVfRaJvBO6UmJXmSVFZMeuxGjOd3kLMtiZA+QAOUAOkAMgB0YI0bJHTKL8yt7ggIOVFZAD5AA5QA6QA+QAOUAOkAPkAMgBcmAPaNljEC17g5UVOHOAHCAHyAFygBwgB8gBcgDkADlADszJX6oudCaJLGL8AAAAAElFTkSuQmCC">
+<title>UPLINK-7</title>
+<style>
+/* Base reset (stands in for the artifact host's page shell) */
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+img{max-width:100%}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Saira+Stencil+One&display=swap">
+<style>
+/* Layout: one-screen wrist display. Glowing blue tactical screen; the D-pad fills the screen by default,
+   combos/loadout/log live in a drawer behind the menu key (top-left). Landscape: readout left, pad right.
+   Deliberately single-theme: a lit blue display looks the same on any host. */
+:root{
+  color-scheme:dark;
+  --bezel:#020812; --screen:#051428; --line:#1b4a85; --grid:rgba(47,140,255,.07); --inner:rgba(47,140,255,.13);
+  --blue:#2f8cff; --hi:#9ad6ff; --text:#d7ecff; --dim:#6a90bd;
+  --key-fill:rgba(47,140,255,.08); --sel:rgba(47,140,255,.22); --scrim:rgba(1,4,10,.68);
+  --alert:#ff6b57; --glow:0 0 10px rgba(47,140,255,.6);
+  --f-ui:"Chakra Petch","Arial Narrow",system-ui,sans-serif;
+  --f-stencil:"Saira Stencil One","Arial Narrow",Impact,sans-serif;
+}
+html{height:100%;box-sizing:border-box;background:var(--bezel)}
+*,*::before,*::after{box-sizing:inherit}
+body{height:100%;margin:0;padding:var(--shell,0px);background:var(--bezel);color:var(--text);font-family:var(--f-ui);overflow:hidden;overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
+button{font-family:inherit}
+
+.device{
+  height:100%;max-width:560px;margin-inline:auto;
+  padding-inline:max(16px, env(safe-area-inset-left,0px)) max(16px, env(safe-area-inset-right,0px));
+  padding-block:8px 14px;
+  display:grid;grid-template-rows:auto minmax(0,1fr);gap:10px;
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
+}
+
+/* Top strip */
+.top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px}
+.menu-btn{width:46px;height:46px;display:grid;place-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--key-fill);color:var(--hi);cursor:pointer;padding:0}
+.menu-btn svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;fill:none}
+.menu-btn:active{background:var(--blue);color:var(--bezel)}
+.ident{display:flex;flex-direction:column;line-height:1;min-width:0}
+.ident b{font:400 20px/1 var(--f-stencil);letter-spacing:.05em;color:var(--hi);text-shadow:var(--glow)}
+.ident span{font:600 11px/1 var(--f-ui);letter-spacing:.16em;color:var(--dim);margin-top:5px;font-variant-numeric:tabular-nums}
+#status{font:600 11px/1 var(--f-ui);letter-spacing:.16em;color:var(--hi);white-space:nowrap;font-variant-numeric:tabular-nums}
+#status.alert{color:var(--alert)}
+
+/* Screen */
+.grid-bg{background-color:var(--screen);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;background-position:center}
+.screen{position:relative;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;padding:14px 14px 12px;border:1.5px solid var(--line);border-radius:20px;box-shadow:inset 0 0 44px var(--inner);overflow:hidden}
+.screen::before,.screen::after{content:"";position:absolute;width:22px;height:22px;border:2px solid var(--blue);pointer-events:none;opacity:.85;z-index:3}
+.screen::before{top:8px;left:8px;border-right:0;border-bottom:0;border-top-left-radius:8px}
+.screen::after{bottom:8px;right:8px;border-left:0;border-top:0;border-bottom-right-radius:8px}
+
+.readout{display:flex;align-items:center;justify-content:center;min-height:64px;padding:8px 10px;border-bottom:1px solid var(--line)}
+.slots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;align-items:center}
+.slot{width:36px;height:36px;display:grid;place-items:center;border-radius:8px;background:var(--blue);color:var(--bezel);box-shadow:var(--glow)}
+.slot svg{width:24px;height:24px;fill:currentColor}
+.ghost{font:600 13px/1 var(--f-ui);letter-spacing:.22em;color:var(--dim);margin-right:4px}
+.cursor{width:12px;height:30px;background:var(--hi);box-shadow:var(--glow);animation:blink 1s steps(1) infinite}
+.readout.bad .slot{background:var(--alert);box-shadow:none}
+.readout.bad{animation:shake .32s}
+@keyframes blink{50%{opacity:0}}
+@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+
+.pad{display:grid;place-items:center;min-height:0;touch-action:none;container-type:size}
+.dpad{width:min(100%,360px,50vh);width:min(100cqw,100cqh,360px);aspect-ratio:1;max-width:100%;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:5%}
+.k{border:2px solid var(--blue);background:var(--key-fill);color:var(--hi);border-radius:20px;display:grid;place-items:center;cursor:pointer;touch-action:none;padding:0;box-shadow:inset 0 0 18px var(--inner)}
+.k svg{width:46%;height:46%;fill:currentColor;filter:drop-shadow(0 0 6px var(--blue));pointer-events:none}
+.k.down{background:var(--blue);color:var(--bezel);box-shadow:var(--glow)}
+.k.down svg{filter:none}
+.k.u{grid-area:1/2}.k.l{grid-area:2/1}.k.r{grid-area:2/3}.k.d{grid-area:3/2}
+.k.c{grid-area:2/2;border-radius:50%;border:1.5px dashed var(--line);background:transparent;color:var(--dim);font:700 12px/1 var(--f-ui);letter-spacing:.14em;margin:16%;box-shadow:none}
+.k.c.down{background:var(--sel);color:var(--hi)}
+.hint{margin:0;text-align:center;font:600 10px/1 var(--f-ui);letter-spacing:.22em;color:var(--dim)}
+
+.confirm{position:absolute;inset:0;z-index:2;display:grid;place-content:center;justify-items:center;gap:14px;padding:20px;text-align:center;cursor:pointer}
+.confirm .ck{font:700 12px/1 var(--f-ui);letter-spacing:.32em;color:var(--hi);animation:blink .45s steps(1) 4}
+.confirm .big{font:700 clamp(24px,8vw,36px)/1.05 var(--f-ui);text-transform:uppercase;letter-spacing:.03em;text-wrap:balance;max-width:16ch;color:var(--text);text-shadow:var(--glow)}
+.confirm .code{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
+.confirm .code .ar{width:30px;height:30px;border-radius:7px;background:var(--blue);color:var(--bezel)}
+.confirm .code .ar svg{width:20px;height:20px}
+.confirm .msg{font:600 11px/1 var(--f-ui);letter-spacing:.26em;color:var(--dim)}
+.scan{width:min(240px,70%);height:6px;border:1px solid var(--blue);border-radius:3px;overflow:hidden}
+.scan i{display:block;height:100%;background:var(--blue);transform-origin:left;animation:fill 1.25s linear forwards}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* Drawer */
+.drawer{position:fixed;inset:0;z-index:20}
+.scrim{position:absolute;inset:0;background:var(--scrim)}
+.panel{position:absolute;top:0;bottom:0;left:0;width:min(100%,440px);display:flex;flex-direction:column;gap:10px;border-right:1.5px solid var(--line);
+  padding-top:calc(env(safe-area-inset-top,0px) + 8px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 14px);
+  padding-inline:max(16px, env(safe-area-inset-left,0px)) 16px;animation:slide .18s ease-out}
+@keyframes slide{from{transform:translateX(-24px);opacity:0}}
+.panel-top{display:flex;align-items:center;gap:12px}
+.ptitle{font:400 19px/1 var(--f-stencil);letter-spacing:.05em;color:var(--hi);text-shadow:var(--glow)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+.tab{padding:13px 4px;border:0;background:transparent;color:var(--dim);font:600 12px/1 var(--f-ui);letter-spacing:.16em;cursor:pointer}
+.tab + .tab{border-left:1.5px solid var(--line)}
+.tab[aria-selected="true"]{background:var(--blue);color:var(--bezel)}
+.pane{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px}
+.box{flex:1;min-height:0;overflow-y:auto;border:1.5px solid var(--line);border-radius:12px;background:var(--key-fill);-webkit-overflow-scrolling:touch}
+
+.list{list-style:none;margin:0;padding:2px 0 6px}
+.sec{padding:11px 12px 4px;font:600 10px/1 var(--f-ui);letter-spacing:.22em;color:var(--dim)}
+.row{position:relative;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:38px}
+.tag{flex:none;font:700 9px/1 var(--f-ui);letter-spacing:.1em;border:1px solid var(--line);color:var(--dim);border-radius:4px;padding:3px 4px 2px}
+.nm{flex:1;min-width:0;font:600 13px/1.15 var(--f-ui);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.code{flex:none;display:flex;gap:2px}
+.ar{width:16px;height:16px;display:grid;place-items:center;color:var(--hi)}
+.ar svg{width:14px;height:14px;fill:currentColor}
+.rc{display:none;flex:none;font:600 12px/1 var(--f-ui);font-variant-numeric:tabular-nums;letter-spacing:.06em;color:var(--dim)}
+.row.cool .code{display:none}
+.row.cool .rc{display:block}
+.row.cool .nm{color:var(--dim)}
+.row.cool::after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;background:var(--blue);transform-origin:left;transform:scaleX(var(--p,0))}
+.none{padding:10px 12px;font:600 12px/1.45 var(--f-ui);letter-spacing:.06em;color:var(--dim)}
+
+.opts{display:flex;gap:18px;flex-wrap:wrap;font:600 12px/1 var(--f-ui);letter-spacing:.12em;color:var(--text)}
+.opts label{display:inline-flex;align-items:center;gap:8px;cursor:pointer;min-height:30px}
+.opts input{width:18px;height:18px;accent-color:var(--blue);margin:0}
+
+.slots4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ls{display:flex;align-items:center;gap:8px;min-height:46px;padding:8px 10px;border-radius:10px;background:var(--sel);border:1.5px solid var(--blue);color:var(--text);font:600 12px/1.15 var(--f-ui);text-transform:uppercase;text-align:left;cursor:pointer;min-width:0}
+.ls .nm{font-size:12px;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.ls.empty{background:transparent;border:1.5px dashed var(--line);color:var(--dim);cursor:default}
+.ls.empty .nm{color:var(--dim)}
+.ls .x{margin-left:auto;flex:none;font-size:16px;line-height:1;color:var(--hi)}
+.note{min-height:14px;margin:0;font:600 11px/1.3 var(--f-ui);letter-spacing:.08em;color:var(--alert)}
+.search{width:100%;font:500 16px/1.2 var(--f-ui);padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--key-fill);color:var(--text);user-select:text;-webkit-user-select:text}
+.search::placeholder{color:var(--dim)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;font:600 11px/1 var(--f-ui);letter-spacing:.12em;padding:9px 11px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--dim);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--blue);color:var(--bezel);border-color:var(--blue)}
+.it{display:flex;align-items:center;gap:8px;width:100%;padding:10px 12px;border:0;border-bottom:1px solid var(--line);background:transparent;color:inherit;text-align:left;cursor:pointer}
+.it .cd{flex:none;font:500 11px/1 var(--f-ui);color:var(--dim);font-variant-numeric:tabular-nums;min-width:40px;text-align:right}
+.it.sel{background:var(--sel)}
+.it.sel .nm{color:var(--hi)}
+.it.sel .tag{border-color:var(--blue);color:var(--hi)}
+.foot{padding:12px;font:500 11px/1.45 var(--f-ui);letter-spacing:.04em;color:var(--dim)}
+.logbar{display:flex;align-items:center;justify-content:space-between;gap:10px;font:600 11px/1 var(--f-ui);letter-spacing:.16em;color:var(--dim)}
+.btn{font:600 11px/1 var(--f-ui);letter-spacing:.14em;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:transparent;color:var(--hi);cursor:pointer}
+.btn.armed{border-color:var(--alert);color:var(--alert)}
+.lg{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.lg time{flex:none;font:600 12px/1 var(--f-ui);font-variant-numeric:tabular-nums;color:var(--dim)}
+.empty-state{padding:28px 16px;text-align:center;color:var(--dim);font:600 12px/1.6 var(--f-ui);letter-spacing:.1em}
+
+/* Shell fit calibration */
+.calib{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:24px}
+.calib-edge{position:fixed;inset:var(--shell,0px);border:2px dashed var(--hi);border-radius:18px;pointer-events:none}
+.calib-card{position:relative;display:grid;gap:14px;justify-items:center;padding:20px 22px;border:1.5px solid var(--blue);border-radius:16px;background:var(--screen);box-shadow:var(--glow);text-align:center;max-width:300px}
+.calib-card h3{margin:0;font:400 20px/1 var(--f-stencil);letter-spacing:.05em;color:var(--hi)}
+.calib-card p{margin:0;font:500 12px/1.5 var(--f-ui);color:var(--dim)}
+.calib-row{display:flex;align-items:center;gap:14px}
+.calib-val{min-width:6ch;font:700 22px/1 var(--f-ui);font-variant-numeric:tabular-nums;color:var(--text)}
+.step{width:52px;height:52px;border:2px solid var(--blue);border-radius:14px;background:var(--key-fill);color:var(--hi);font:700 26px/1 var(--f-ui);cursor:pointer}
+.step:active{background:var(--blue);color:var(--bezel)}
+.calib-actions{display:flex;gap:8px}
+
+.step:focus-visible,.menu-btn:focus-visible,.k:focus-visible,.tab:focus-visible,.chip:focus-visible,.it:focus-visible,.ls:focus-visible,.btn:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
+
+@media (orientation:landscape) and (max-height:540px){
+  .device{max-width:none;padding-block:6px 10px}
+  .screen{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:18px}
+  .readout{border-bottom:0;border-right:1px solid var(--line);padding-right:18px}
+  .dpad{width:min(100%,72vh);width:min(100cqw,100cqh)}
+  .hint{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  .readout.bad,.cursor,.confirm .ck,.panel{animation:none}
+  .scan i{animation-duration:.01s}
+}
+</style>
+</head>
+<body>
+<div class="device">
+  <header class="top">
+    <button class="menu-btn" id="btnMenu" type="button" aria-label="Show combos" aria-expanded="false" aria-controls="drawer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></svg>
+    </button>
+    <div class="ident"><b>UPLINK-7</b><span id="clock">00:00:00</span></div>
+    <span id="status" role="status">READY</span>
+  </header>
+
+  <main class="screen grid-bg" id="screen">
+    <div class="readout" id="entry" aria-label="Entered code"><div class="slots" id="slots"></div></div>
+    <div class="pad" id="pad" aria-label="Direction pad">
+      <div class="dpad">
+        <button class="k u" type="button" data-dir="U" aria-label="Up"></button>
+        <button class="k l" type="button" data-dir="L" aria-label="Left"></button>
+        <button class="k c" type="button" data-act="clr" aria-label="Clear code">CLR</button>
+        <button class="k r" type="button" data-dir="R" aria-label="Right"></button>
+        <button class="k d" type="button" data-dir="D" aria-label="Down"></button>
+      </div>
+    </div>
+    <p class="hint">TAP OR SWIPE</p>
+    <div class="confirm grid-bg" id="confirm" hidden></div>
+  </main>
+</div>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="scrim" data-close></div>
+  <aside class="panel grid-bg" role="dialog" aria-label="Combos, loadout and log">
+    <div class="panel-top">
+      <button class="menu-btn" type="button" data-close aria-label="Close menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <span class="ptitle">UPLINK-7</span>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab" type="button" role="tab" data-tab="combos" aria-selected="true">COMBOS</button>
+      <button class="tab" type="button" role="tab" data-tab="load" aria-selected="false">LOADOUT</button>
+      <button class="tab" type="button" role="tab" data-tab="log" aria-selected="false">LOG</button>
+    </div>
+
+    <section class="pane" id="pane-combos">
+      <div class="box"><ul class="list" id="list"></ul></div>
+      <div class="opts">
+        <label><input type="checkbox" id="optSound"> SOUND</label>
+        <label><input type="checkbox" id="optObj"> OBJECTIVE CALLS</label>
+        <button class="btn" type="button" id="btnFit">SHELL FIT</button>
+      </div>
+    </section>
+
+    <section class="pane" id="pane-load" hidden>
+      <div class="slots4" id="slots4"></div>
+      <p class="note" id="loadNote" role="status"></p>
+      <input class="search" id="q" type="search" placeholder="Search stratagems" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search stratagems">
+      <div class="chips" id="chips"></div>
+      <div class="box" id="catalog"></div>
+    </section>
+
+    <section class="pane" id="pane-log" hidden>
+      <div class="logbar"><span id="logCount">0 ENTRIES</span><button class="btn" type="button" id="btnClearLog">CLEAR</button></div>
+      <div class="box" id="logList"></div>
+    </section>
+  </aside>
+</div>
+
+<div class="calib" id="calib" hidden>
+  <div class="calib-edge"></div>
+  <div class="calib-card" role="dialog" aria-label="Shell fit">
+    <h3>SHELL FIT</h3>
+    <p>Shrink the display until the dashed line sits just inside your shell's screen window.</p>
+    <div class="calib-row">
+      <button class="step" type="button" data-step="-2" aria-label="Less inset">−</button>
+      <span class="calib-val" id="fitVal">0 PX</span>
+      <button class="step" type="button" data-step="2" aria-label="More inset">+</button>
+    </div>
+    <div class="calib-actions"><button class="btn" type="button" id="fitReset">RESET</button><button class="btn" type="button" id="fitDone">DONE</button></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  // [group, name, code (U/D/L/R), base cooldown seconds, approximate?]
+  const D = [
+    ['orbital','Orbital Precision Strike','RRU',80],
+    ['orbital','Orbital Gatling Barrage','RDLUU',70],
+    ['orbital','Orbital Gas Strike','RRDR',75],
+    ['orbital','Orbital 120mm HE Barrage','RRDLRD',180],
+    ['orbital','Orbital Airburst Strike','RRR',100],
+    ['orbital','Orbital Smoke Strike','RRDU',75],
+    ['orbital','Orbital EMS Strike','RRLD',75],
+    ['orbital','Orbital 380mm HE Barrage','RDUULDD',240],
+    ['orbital','Orbital Walking Barrage','RDRDRD',240],
+    ['orbital','Orbital Laser','RDURD',300],
+    ['orbital','Orbital Napalm Barrage','RRDLRU',240],
+    ['orbital','Orbital Railcannon Strike','RUDDR',180],
+    ['eagle','Eagle Strafing Run','URR',15],
+    ['eagle','Eagle Airstrike','URDR',15],
+    ['eagle','Eagle Cluster Bomb','URDDR',15],
+    ['eagle','Eagle Napalm Airstrike','URDU',15],
+    ['eagle','Eagle Smoke Strike','URUD',15],
+    ['eagle','Eagle 110mm Rocket Pods','URUL',15],
+    ['eagle','Eagle 500kg Bomb','URDDD',15],
+    ['eagle','Eagle Gas Airstrike','URLR',15],
+    ['weapon','MG-43 Machine Gun','DLDUR',480],
+    ['weapon','EAT-17 Expendable Anti-Tank','DDLUR',70],
+    ['weapon','M-105 Stalwart','DLDUUL',480],
+    ['weapon','LAS-98 Laser Cannon','DLDUL',480],
+    ['weapon','APW-1 Anti-Materiel Rifle','DLRUD',480],
+    ['weapon','GR-8 Recoilless Rifle','DLRRL',480],
+    ['weapon','GL-21 Grenade Launcher','DLULD',480],
+    ['weapon','FLAM-40 Flamethrower','DLUDU',480],
+    ['weapon','MG-206 Heavy Machine Gun','DLUDD',480],
+    ['weapon','AC-8 Autocannon','DLDUUR',480],
+    ['weapon','ARC-3 Arc Thrower','DRDULL',480],
+    ['weapon','LAS-99 Quasar Cannon','DDULR',480],
+    ['weapon','RL-77 Airburst Rocket Launcher','DUULR',480],
+    ['weapon','MLS-4X Commando','DLUDR',120],
+    ['weapon','FAF-14 Spear','DDUDD',480],
+    ['weapon','RS-422 Railgun','DRDULR',480],
+    ['weapon','StA-X3 W.A.S.P. Launcher','DDUDR',480],
+    ['weapon','CQC-20 Breaching Hammer','DLRLU',480],
+    ['weapon','PLAS-45 Epoch','DLULR',480],
+    ['weapon','MGX-42 Bullet Storm','DLDRUL',70],
+    ['weapon','S-11 Speargun','DRDLUR',480],
+    ['weapon','CQC-9 Defoliation Tool','DLRRD',480],
+    ['weapon','GL-52 De-Escalator','DRULR',480],
+    ['weapon','EAT-700 Expendable Napalm','DDLUL',140],
+    ['weapon','TX-41 Sterilizer','DLUDL',480],
+    ['weapon','EAT-411 Leveller','DDLUD',140],
+    ['weapon','GL-28 Belt-Fed Grenade Launcher','DLULUU',480],
+    ['weapon','B/MD C4 Pack','DRUURU',480],
+    ['weapon','MS-11 Solo Silo','DURDD',180],
+    ['weapon','B/FLAM-80 Cremator','DDRDUU',480],
+    ['weapon','M-1000 Maxigun','DLRDUU',480],
+    ['weapon','CQC-1 One True Flag','DLRRU',480],
+    ['weapon','40-K Meltagun','DLULLD',480],
+    ['backpack','B-1 Supply Pack','DLDUUD',480],
+    ['backpack','LIFT-850 Jump Pack','DUUDU',480],
+    ['backpack','SH-20 Ballistic Shield Backpack','DLDDUL',240],
+    ['backpack','AX/AR-23 Guard Dog','DULURD',480],
+    ['backpack','AX/LAS-5 Rover','DULURR',480],
+    ['backpack','SH-32 Shield Generator Pack','DULRLR',480],
+    ['backpack','SH-51 Directional Shield','DULRUU',300],
+    ['backpack','AX/FLAM-75 Hot Dog','DULULL',480],
+    ['backpack','B-100 Portable Hellbomb','DRUUU',300],
+    ['backpack','AX/ARC-3 K-9','DULURL',480],
+    ['backpack','LIFT-860 Hover Pack','DUUDLR',480],
+    ['backpack','AX/TX-13 Dog Breath','DULURU',480],
+    ['backpack','LIFT-182 Warp Pack','DLRDLR',480],
+    ['vehicle','M-102 Gunner FRV','LDRDRDU',480],
+    ['vehicle','M-103 Supply FRV','LDLLDUR',480],
+    ['vehicle','M-104 Incinerator FRV','LDRLDUU',480],
+    ['vehicle','EXO-45 Patriot Exosuit','LDRULDD',420],
+    ['vehicle','EXO-49 Emancipator Exosuit','LDRULDU',420],
+    ['vehicle','EXO-51 Lumberer Exosuit','LDRURLU',420],
+    ['vehicle','EXO-55 Breakthrough Exosuit','LDRLRDU',420],
+    ['vehicle','TD-110 Maelstrom','LDRDLDULR',780],
+    ['vehicle','TD-220 Bastion MK XVI','LDRDLDUDU',780],
+    ['sentry','A/MG-43 Machine Gun Sentry','DURRU',90],
+    ['sentry','A/G-16 Gatling Sentry','DURL',150,1],
+    ['sentry','A/M-12 Mortar Sentry','DURRD',180,1],
+    ['sentry','A/AC-8 Autocannon Sentry','DURULU',150,1],
+    ['sentry','A/MLS-4X Rocket Sentry','DURRL',150,1],
+    ['sentry','A/M-23 EMS Mortar Sentry','DURDR',180,1],
+    ['sentry','A/ARC-3 Tesla Tower','DURULR',150,1],
+    ['sentry','A/LAS-98 Laser Sentry','DURDUR',150,1],
+    ['sentry','A/FLAM-40 Flame Sentry','DURDUU',150,1],
+    ['sentry','A/GM-17 Gas Mortar Sentry','DURDL',180,1],
+    ['emplacement','E/MG-101 HMG Emplacement','DULRRL',180,1],
+    ['emplacement','E/AT-12 Anti-Tank Emplacement','DULRRR',180,1],
+    ['emplacement','E/GL-21 Grenadier Emplacement','DRDLR',180,1],
+    ['emplacement','FX-12 Shield Generator Relay','DDLRLR',90,1],
+    ['emplacement','MD-6 Anti-Personnel Minefield','DLUR',120,1],
+    ['emplacement','MD-I4 Incendiary Mines','DLLD',120,1],
+    ['emplacement','MD-17 Anti-Tank Mines','DLUU',120,1],
+    ['emplacement','MD-8 Gas Mines','DLLR',120,1],
+  ];
+  const STD_D = [
+    ['mission','Reinforce','UDRLU',0],
+    ['mission','Resupply','DDUR',160,1],
+    ['mission','SOS Beacon','UDRU',120,1],
+    ['eagle','Eagle Rearm','UULUR',0],
+  ];
+  const OBJ_D = [
+    ['mission','Hellbomb','DULDURDU',0],
+    ['mission','SEAF Artillery','RUUD',0],
+    ['mission','Super Earth Flag','DUDU',0],
+    ['mission','Orbital Illumination Flare','RRLL',0],
+  ];
+  const GROUPS = [
+    ['orbital','ORB','ORBITAL'],['eagle','EGL','EAGLE'],['weapon','WPN','WEAPONS'],['backpack','PAK','BACKPACKS'],
+    ['vehicle','VEH','VEHICLES'],['sentry','SNT','SENTRIES'],['emplacement','EMP','EMPLACEMENTS'],['mission','MSN','MISSION'],
+  ];
+  const TAG = Object.fromEntries(GROUPS.map(g => [g[0], g[1]]));
+  const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const mk = ([group,name,code,cd,approx]) => ({id:slug(name),group,name,code,cd,approx:!!approx});
+  const ALL = D.map(mk), STD = STD_D.map(mk), OBJ = OBJ_D.map(mk);
+  const BY = Object.fromEntries([...ALL,...STD,...OBJ].map(s => [s.id,s]));
+  const WORD = {U:'up',D:'down',L:'left',R:'right'};
+
+  const store = {
+    get(k,d){ try{ const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); }catch(e){ return d; } },
+    set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  };
+  const $ = s => document.querySelector(s);
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const ROT = {U:0,R:90,D:180,L:270};
+  const arrow = d => `<svg viewBox="0 0 24 24" aria-hidden="true" style="transform:rotate(${ROT[d]}deg)"><path d="M12 2.5 21.5 12.5H15V21.5H9V12.5H2.5Z"/></svg>`;
+  const codeHTML = code => [...code].map(c => `<span class="ar">${arrow(c)}</span>`).join('');
+
+  // State
+  let loadout = store.get('uplink.loadout', ['eagle-500kg-bomb','orbital-laser','gr-8-recoilless-rifle','a-g-16-gatling-sentry']);
+  loadout = Array.isArray(loadout) ? loadout.filter(id => ALL.some(s => s.id === id)).slice(0,4) : [];
+  let soundOn = store.get('uplink.sound', true) !== false;
+  let objOn = !!store.get('uplink.obj', false);
+  let log = store.get('uplink.log', []); if (!Array.isArray(log)) log = [];
+  const coolUntil = {};
+  let input = [], busy = false, idleT = 0, rows = [];
+  let shell = Math.max(0, Math.min(80, Number(store.get('uplink.shell', 0)) || 0));
+  const applyShell = () => document.documentElement.style.setProperty('--shell', shell + 'px');
+  applyShell();
+
+  const now = () => Date.now();
+  const left = s => Math.max(0, (coolUntil[s.id] || 0) - now());
+  const cooling = s => left(s) > 0;
+  const fmt = ms => { const t = Math.ceil(ms/1000); return `${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`; };
+
+  function activeSets(){
+    const l = loadout.map(id => BY[id]).filter(Boolean);
+    const std = STD.filter(s => s.id !== 'eagle-rearm' || l.some(x => x.group === 'eagle'));
+    return { l, std: objOn ? std.concat(OBJ) : std };
+  }
+  const activeAll = () => { const {l,std} = activeSets(); return l.concat(std); };
+
+  // Audio
+  let ac = null;
+  function audio(){
+    if (!soundOn) return null;
+    try{
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === 'suspended') ac.resume();
+      return ac;
+    }catch(e){ return null; }
+  }
+  function tone(f, t0, dur, type, vol, f2){
+    const a = audio(); if (!a) return;
+    const t = a.currentTime + t0, o = a.createOscillator(), g = a.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.006);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(a.destination);
+    o.start(t); o.stop(t + dur + 0.03);
+  }
+  function thump(t0, dur, vol){
+    const a = audio(); if (!a) return;
+    const n = Math.floor(a.sampleRate * dur), b = a.createBuffer(1, n, a.sampleRate), d = b.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = (Math.random()*2 - 1) * Math.pow(1 - i/n, 2);
+    const s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    s.buffer = b; f.type = 'lowpass'; f.frequency.value = 520; g.gain.value = vol;
+    s.connect(f); f.connect(g); g.connect(a.destination); s.start(a.currentTime + t0);
+  }
+  const PITCH = {U:988, R:880, D:740, L:831};
+  const sBlip = d => tone(PITCH[d], 0, 0.055, 'square', 0.05);
+  const sClear = () => tone(420, 0, 0.05, 'square', 0.035, 300);
+  function sOK(){
+    [659, 880, 1175, 1568].forEach((f,i) => tone(f, i*0.065, 0.1, 'triangle', 0.09));
+    tone(196, 0.28, 0.42, 'sine', 0.14, 48); thump(0.28, 0.45, 0.3);
+  }
+  function sBad(){ tone(150, 0, 0.24, 'sawtooth', 0.06, 104); tone(153, 0, 0.24, 'square', 0.035, 106); }
+
+  // Keep the screen awake while in use
+  let wl = null, started = false;
+  async function wake(){
+    try{ if ('wakeLock' in navigator && !wl){ wl = await navigator.wakeLock.request('screen'); wl.addEventListener('release', () => { wl = null; }); } }catch(e){}
+  }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && started) wake(); });
+  function firstTouch(){ if (!started){ started = true; wake(); } audio(); }
+
+  // Readout
+  const slotsEl = $('#slots'), entryEl = $('#entry'), statusEl = $('#status'), confirmEl = $('#confirm');
+  function setStatus(t, alert){ statusEl.textContent = t; statusEl.classList.toggle('alert', !!alert); }
+  function paintEntry(){
+    slotsEl.innerHTML = input.length
+      ? input.map(d => `<span class="slot">${arrow(d)}</span>`).join('') + (busy ? '' : '<span class="cursor"></span>')
+      : '<span class="ghost">AWAITING INPUT</span><span class="cursor"></span>';
+  }
+  function armIdle(){
+    clearTimeout(idleT);
+    idleT = setTimeout(() => { if (input.length && !busy){ input = []; setStatus('READY'); paintEntry(); } }, 4000);
+  }
+
+  function inbound(s){
+    const m = {'reinforce':'REINFORCEMENTS INBOUND','resupply':'SUPPLY DROP INBOUND','sos-beacon':'BEACON TRANSMITTING','eagle-rearm':'EAGLE REARMING','hellbomb':'HELLBOMB INBOUND','seaf-artillery':'ARTILLERY ARMED','super-earth-flag':'FLAG INBOUND'}[s.id];
+    if (m) return m;
+    if (/^Orbital/.test(s.name)) return 'ORBITAL STRIKE INBOUND';
+    if (s.group === 'eagle') return 'EAGLE INBOUND';
+    if (s.group === 'vehicle') return 'VEHICLE DROP INBOUND';
+    return 'DROP POD INBOUND';
+  }
+
+  let confirmT = 0;
+  function hideConfirm(){ clearTimeout(confirmT); confirmEl.hidden = true; busy = false; setStatus('READY'); paintEntry(); }
+  function succeed(s){
+    busy = true; clearTimeout(idleT); input = [];
+    sOK();
+    if (s.cd > 0) coolUntil[s.id] = now() + s.cd*1000;
+    log.unshift({t: now(), n: s.name, g: s.group});
+    if (log.length > 200) log.length = 200;
+    store.set('uplink.log', log);
+    setStatus('CONFIRMED');
+    confirmEl.innerHTML = `<span class="ck">UPLINK CONFIRMED</span><span class="big">${esc(s.name)}</span><span class="code">${codeHTML(s.code)}</span><span class="scan"><i></i></span><span class="msg">${inbound(s)}</span>`;
+    confirmEl.hidden = false;
+    paintEntry();
+    confirmT = setTimeout(hideConfirm, 1500);
+  }
+  function fail(msg){
+    busy = true; clearTimeout(idleT);
+    sBad(); setStatus(msg, true);
+    paintEntry();
+    entryEl.classList.remove('bad'); void entryEl.offsetWidth; entryEl.classList.add('bad');
+    setTimeout(() => { entryEl.classList.remove('bad'); input = []; busy = false; paintEntry(); }, 520);
+    setTimeout(() => { if (!input.length && !busy) setStatus('READY'); }, 1400);
+  }
+  function press(d){
+    if (busy) return;
+    input.push(d);
+    const s = input.join('');
+    const pref = activeAll().filter(x => x.code.startsWith(s));
+    if (!pref.length) return fail('NO MATCH');
+    const exact = pref.find(x => x.code === s);
+    if (exact){
+      if (cooling(exact)) return fail('RCHG ' + fmt(left(exact)));
+      return succeed(exact);
+    }
+    sBlip(d);
+    setStatus(pref.length === 1 ? '1 MATCH' : pref.length + ' MATCHES');
+    paintEntry(); armIdle();
+  }
+  function clearInput(){
+    if (busy) return;
+    if (input.length) sClear();
+    input = []; clearTimeout(idleT); setStatus('READY'); paintEntry();
+  }
+  confirmEl.addEventListener('click', hideConfirm);
+
+  // Pad: tap the keys, or swipe anywhere on the pad
+  const pad = $('#pad'), ptrs = new Map();
+  const keyFor = d => pad.querySelector(`[data-dir="${d}"]`);
+  function flashKey(d){ const k = keyFor(d); if (!k) return; k.classList.add('down'); setTimeout(() => k.classList.remove('down'), 90); }
+  pad.addEventListener('pointerdown', e => {
+    firstTouch();
+    const btn = e.target.closest('[data-dir],[data-act]');
+    ptrs.set(e.pointerId, {x:e.clientX, y:e.clientY, btn});
+    if (btn) btn.classList.add('down');
+    try{ pad.setPointerCapture(e.pointerId); }catch(err){}
+    e.preventDefault();
+  });
+  pad.addEventListener('pointerup', e => {
+    const p = ptrs.get(e.pointerId); if (!p) return;
+    ptrs.delete(e.pointerId);
+    if (p.btn) p.btn.classList.remove('down');
+    const dx = e.clientX - p.x, dy = e.clientY - p.y;
+    if (Math.hypot(dx, dy) > 26){
+      const d = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'R' : 'L') : (dy > 0 ? 'D' : 'U');
+      flashKey(d); press(d);
+    } else if (p.btn){
+      if (p.btn.dataset.dir) press(p.btn.dataset.dir);
+      else if (p.btn.dataset.act === 'clr') clearInput();
+    }
+  });
+  pad.addEventListener('pointercancel', e => { const p = ptrs.get(e.pointerId); if (p && p.btn) p.btn.classList.remove('down'); ptrs.delete(e.pointerId); });
+  pad.addEventListener('click', e => e.preventDefault());
+  pad.querySelectorAll('[data-dir]').forEach(k => { k.innerHTML = arrow(k.dataset.dir); });
+
+  // Drawer (menu key)
+  const drawer = $('#drawer'), btnMenu = $('#btnMenu');
+  let drawerOpen = false, tab = 'combos';
+  function openDrawer(t){
+    clearInput(); drawer.hidden = false; drawerOpen = true;
+    btnMenu.setAttribute('aria-expanded','true');
+    showTab(t || 'combos');
+  }
+  function closeDrawer(){
+    if (!drawerOpen) return;
+    drawer.hidden = true; drawerOpen = false;
+    btnMenu.setAttribute('aria-expanded','false');
+  }
+  btnMenu.addEventListener('click', () => drawerOpen ? closeDrawer() : openDrawer('combos'));
+  drawer.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', closeDrawer));
+  const tabBtns = [...drawer.querySelectorAll('[data-tab]')];
+  tabBtns.forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
+  function showTab(t){
+    tab = t;
+    tabBtns.forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
+    ['combos','load','log'].forEach(k => { $('#pane-' + k).hidden = k !== t; });
+    if (t === 'combos') renderCombos(); else if (t === 'load') renderLoad(); else renderLog();
+  }
+
+  const KEYS = {ArrowUp:'U',ArrowDown:'D',ArrowLeft:'L',ArrowRight:'R',w:'U',s:'D',a:'L',d:'R',W:'U',S:'D',A:'L',D:'R'};
+  document.addEventListener('keydown', e => {
+    if (calibOpen){ if (e.key === 'Escape') closeCalib(); return; }
+    if (drawerOpen){ if (e.key === 'Escape') closeDrawer(); return; }
+    if (e.target.closest && e.target.closest('input')) return;
+    const d = KEYS[e.key];
+    if (d){ e.preventDefault(); firstTouch(); flashKey(d); press(d); }
+    else if (e.key === 'Escape' || e.key === 'Backspace'){ e.preventDefault(); clearInput(); }
+  });
+
+  // Combos tab
+  const listEl = $('#list'), optSound = $('#optSound'), optObj = $('#optObj');
+  function renderCombos(){
+    optSound.checked = soundOn; optObj.checked = objOn;
+    const {l, std} = activeSets();
+    listEl.innerHTML = ''; rows = [];
+    const sec = t => { const li = document.createElement('li'); li.className = 'sec'; li.textContent = t; listEl.append(li); };
+    const add = s => {
+      const li = document.createElement('li');
+      li.className = 'row';
+      li.setAttribute('aria-label', `${s.name}: ${[...s.code].map(c => WORD[c]).join(' ')}`);
+      li.innerHTML = `<span class="tag">${TAG[s.group]}</span><span class="nm">${esc(s.name)}</span><span class="code">${codeHTML(s.code)}</span><span class="rc"></span>`;
+      listEl.append(li);
+      rows.push({el:li, s, rc:li.querySelector('.rc')});
+    };
+    sec('LOADOUT');
+    if (!l.length){ const li = document.createElement('li'); li.className = 'none'; li.textContent = 'No stratagems loaded. Open the LOADOUT tab and pick up to four.'; listEl.append(li); }
+    l.forEach(add);
+    sec(objOn ? 'STANDARD + OBJECTIVE' : 'STANDARD');
+    std.forEach(add);
+    paintRows();
+  }
+  function paintRows(){
+    for (const r of rows){
+      const c = cooling(r.s);
+      r.el.classList.toggle('cool', c);
+      if (c){ const ms = left(r.s); r.rc.textContent = 'RCHG ' + fmt(ms); r.el.style.setProperty('--p', (ms / (r.s.cd*1000)).toFixed(3)); }
+    }
+  }
+  optSound.addEventListener('change', () => { soundOn = optSound.checked; store.set('uplink.sound', soundOn); if (soundOn) sBlip('U'); });
+  optObj.addEventListener('change', () => { objOn = optObj.checked; store.set('uplink.obj', objOn); renderCombos(); });
+
+  // Loadout tab
+  let filter = 'all', query = '';
+  const qEl = $('#q'), chipsEl = $('#chips'), catEl = $('#catalog'), slots4 = $('#slots4'), noteEl = $('#loadNote');
+  const chipDefs = [['all','ALL'], ...GROUPS.filter(g => g[0] !== 'mission').map(g => [g[0], g[2]])];
+  chipsEl.innerHTML = chipDefs.map(([k,t]) => `<button class="chip" type="button" data-f="${k}" aria-pressed="${k === filter}">${t}</button>`).join('');
+  chipsEl.addEventListener('click', e => {
+    const b = e.target.closest('[data-f]'); if (!b) return;
+    filter = b.dataset.f;
+    chipsEl.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+    renderCatalog();
+  });
+  qEl.addEventListener('input', () => { query = qEl.value.trim().toLowerCase(); renderCatalog(); });
+  const saveLoadout = () => store.set('uplink.loadout', loadout);
+  function renderSlots(){
+    slots4.innerHTML = [0,1,2,3].map(i => {
+      const s = BY[loadout[i]];
+      return s
+        ? `<button class="ls" type="button" data-rm="${s.id}" aria-label="Remove ${esc(s.name)}"><span class="tag">${TAG[s.group]}</span><span class="nm">${esc(s.name)}</span><span class="x" aria-hidden="true">×</span></button>`
+        : `<div class="ls empty"><span class="nm">EMPTY SLOT ${i + 1}</span></div>`;
+    }).join('');
+  }
+  slots4.addEventListener('click', e => {
+    const b = e.target.closest('[data-rm]'); if (!b) return;
+    loadout = loadout.filter(id => id !== b.dataset.rm); saveLoadout(); noteEl.textContent = ''; renderSlots(); renderCatalog();
+  });
+  function renderCatalog(){
+    const items = ALL.filter(s => (filter === 'all' || s.group === filter) && (!query || s.name.toLowerCase().includes(query)));
+    if (!items.length){ catEl.innerHTML = `<div class="empty-state">No stratagem matches “${esc(query)}”.</div>`; return; }
+    let html = '';
+    for (const [g,,label] of GROUPS){
+      const grp = items.filter(s => s.group === g); if (!grp.length) continue;
+      html += `<div class="sec">${label}</div>`;
+      html += grp.map(s => {
+        const sel = loadout.includes(s.id);
+        return `<button class="it${sel ? ' sel' : ''}" type="button" data-id="${s.id}" aria-pressed="${sel}"><span class="tag">${TAG[s.group]}</span><span class="nm">${esc(s.name)}</span><span class="code">${codeHTML(s.code)}</span><span class="cd">${s.approx ? '~' : ''}${s.cd}s</span></button>`;
+      }).join('');
+    }
+    html += `<div class="foot">Base cooldowns. ~ marks an approximate value. Codes and cooldowns can change with game patches.</div>`;
+    const top = catEl.scrollTop; catEl.innerHTML = html; catEl.scrollTop = top;
+  }
+  catEl.addEventListener('click', e => {
+    const b = e.target.closest('[data-id]'); if (!b) return;
+    const id = b.dataset.id;
+    if (loadout.includes(id)){ loadout = loadout.filter(x => x !== id); noteEl.textContent = ''; }
+    else if (loadout.length >= 4){ noteEl.textContent = 'Loadout is full. Tap a slot above to remove one first.'; return; }
+    else { loadout.push(id); noteEl.textContent = ''; }
+    saveLoadout(); renderSlots(); renderCatalog();
+  });
+  function renderLoad(){ noteEl.textContent = ''; renderSlots(); renderCatalog(); }
+
+  // Log tab
+  const logEl = $('#logList'), btnClearLog = $('#btnClearLog');
+  let clearArmed = false, clearT = 0;
+  function disarm(){ clearArmed = false; btnClearLog.textContent = 'CLEAR'; btnClearLog.classList.remove('armed'); }
+  function renderLog(){
+    disarm();
+    $('#logCount').textContent = `${log.length} ${log.length === 1 ? 'ENTRY' : 'ENTRIES'}`;
+    if (!log.length){ logEl.innerHTML = '<div class="empty-state">No call-ins yet.<br>Enter a code on the pad and it lands here.</div>'; return; }
+    logEl.innerHTML = log.map(e => {
+      const t = new Date(e.t).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false});
+      return `<div class="lg"><time>${t}</time><span class="tag">${TAG[e.g] || 'MSN'}</span><span class="nm">${esc(e.n)}</span></div>`;
+    }).join('');
+  }
+  btnClearLog.addEventListener('click', () => {
+    if (!log.length) return;
+    if (!clearArmed){
+      clearArmed = true; btnClearLog.textContent = 'TAP TO CONFIRM'; btnClearLog.classList.add('armed');
+      clearTimeout(clearT); clearT = setTimeout(disarm, 3000);
+      return;
+    }
+    log = []; store.set('uplink.log', log); renderLog();
+  });
+
+  // Shell fit calibration
+  const calib = $('#calib'), fitVal = $('#fitVal');
+  let calibOpen = false;
+  const showFit = () => { fitVal.textContent = shell + ' PX'; };
+  const setShell = v => { shell = Math.max(0, Math.min(80, v)); applyShell(); showFit(); store.set('uplink.shell', shell); };
+  function closeCalib(){ calib.hidden = true; calibOpen = false; }
+  $('#btnFit').addEventListener('click', () => { closeDrawer(); calib.hidden = false; calibOpen = true; showFit(); });
+  calib.querySelectorAll('[data-step]').forEach(b => b.addEventListener('click', () => setShell(shell + Number(b.dataset.step))));
+  $('#fitReset').addEventListener('click', () => setShell(0));
+  $('#fitDone').addEventListener('click', closeCalib);
+
+  // Clock + cooldown ticker
+  const clockEl = $('#clock');
+  function tick(){
+    clockEl.textContent = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false});
+    if (drawerOpen && tab === 'combos') paintRows();
+  }
+  setInterval(tick, 250); tick();
+
+  paintEntry();
+})();
+</script>
+</body>
+</html>
